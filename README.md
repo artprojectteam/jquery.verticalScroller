@@ -9,6 +9,8 @@ overflow領域で内部スクロールさせる際にデフォルトの`overflow
 @use: jQuery 1.11.x/2.x
 
 
+[動作デモ](http://demo.artprojectteam.jp/jquery_vertical_scroller/)
+
 
 
 ## Install
