@@ -26,7 +26,7 @@ bower install  jquery_vertical_scroller --save
 **File Read**
 
 ```html
-<script src="/path/to/jQuery.verticalScroller.js"></script>
+<script src="/path/to/jquery.verticalScroller.js"></script>
 ```
 
 `</body>`前でスクリプトファイルを読む
