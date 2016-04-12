@@ -1,0 +1,33 @@
+{
+  "name": "jquery_vertical_scroller",
+  "description": "overflow area animation plugin",
+  "main": "index.js",
+  "authors": [
+    "Nobuyuki Kondo"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "jquery",
+    "easing",
+    "scroll"
+  ],
+  "homepage": "https://github.com/artprojectteam/jquery.verticalScroller",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "*.coffee",
+    "gulpfile.coffee",
+    "gulp",
+    "_ws",
+    "package.json",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "jquery": "2.1.4",
+    "jquery-1.11.1": "1.11.3"
+  }
+}

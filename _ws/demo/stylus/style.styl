@@ -1,0 +1,77 @@
+@charset "UTF-8"
+@import "_assets/_normalize.styl"
+@import "_assets/_reset.styl"
+
+$space = 20px
+
+$c = #28ae8f
+$c1 = lighten($c, 12%)
+
+body
+  $size = 58px
+  $bg_px = 23px
+  margin: 0
+  padding: 0
+  background-color: $c
+  background-image: linear-gradient($c1 2px, transparent 2px), linear-gradient(90deg, $c1 2px, transparent 2px), linear-gradient(rgba($c1, .3) 1px, transparent 1px), linear-gradient(90deg, rgba($c1, .3) 1px, transparent 1px)
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px
+
+
+.footer
+  padding: 1em 0
+  text-align: center
+
+
+
+
+h1
+  padding: $space
+  margin: 0
+
+.clear-fix
+  clear: both
+  &:after
+    display: block
+    clear: both
+    content: ""
+    zoom: 1
+
+
+.sec
+  margin-top: $space
+  padding: 0 $space
+
+.wr
+  overflow: hidden
+  background: #ffffff
+  height: 200px
+.co
+  position: relative
+
+
+.container
+  padding: $space
+
+  p
+    margin-top: 0
+    &:last-child
+      margin-bottom: 0
+
+
+.sec2
+  margin-left: -($space)
+  &-cell
+    float: left
+    width: 50%
+    box-sizing: border-box
+    padding-left: $space
+
+
+.btn-context-remove
+.btn-context-add
+.btn-reset
+  margin-top: $space
+
+#wrapper4-2
+  margin-top: $space

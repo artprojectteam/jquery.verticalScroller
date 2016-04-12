@@ -1,0 +1,210 @@
+- var title = 'jQuery.verticalScroller Demo'
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    title= title
+    meta(name="viewport", content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1")
+    link(rel="stylesheet", href="css/style.css")
+    <!--[if lt IE 9]>
+    script(src="js/jquery.1.11.3.min.js")
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+    script(src="js/jquery.2.1.4.min.js")
+    <!--<![endif]-->
+
+
+  body
+    article
+      h1= title
+
+      section.sec
+        h2.sec-title オーソドックス(高さ固定)
+
+        #wrapper1.wrapper.wr
+          .container.co
+            for val in [1,2,3,4,5,6,7,8,9,10]
+              p Paragraph 1-#{val}
+
+
+      section.sec
+        h2.sec-title 複数領域(高さ固定)
+
+        .clear-fix.sec2
+          .sec2-cell
+            #wrapper2-1.wrapper2.wr
+              .container.co
+                for val in [1,2,3,4,5,6,7,8,9,10]
+                  p Paragraph 2-#{val}
+
+          .sec2-cell
+            #wrapper2-2.wrapper2.wr
+              .container.co
+                for val in [1,2,3,4,5,6,7,8,9,10]
+                  p Paragraph 2-#{val}
+
+      section.sec
+        h2.sec-title 領域アップデート
+
+        .clear-fix.sec2
+          .sec2-cell
+            #wrapper3.wrapper3.wr
+              .container.co
+                for val in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+                  p.jsElem Paragraph 3-#{val}
+
+
+          .sec2-cell
+            button.jsClick-ChangeHeight(type="button", data-id="#wrapper3", data-height="300") 高さ変更
+            br
+            button.btn-context-remove.jsClick-ChangeContext(type="button", data-id="#wrapper3", data-context="remove") 内容削除
+            br
+            button.btn-context-add.jsClick-ChangeContext(type="button", data-id="#wrapper3", data-context="add") 内容追加
+
+
+
+      section.sec
+        h2.sec-title 表示位置リセット
+
+        .clear-fix.sec2
+          .sec2-cell
+            #wrapper4-1.wrapper4.wr
+              .container.co
+                p Area 1
+                for val in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+                  p Paragraph 4-#{val}
+
+            #wrapper4-2.wrapper4.wr
+              .container.co
+                p Area 2
+                for val in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+                  p Paragraph 4-#{val}
+
+
+
+          .sec2-cell
+            button.jsClick-ResetPosition(type="button", data-reset-all="false", data-target="#wrapper4-1") Area 1をリセット
+            br
+            button.btn-reset.jsClick-ResetPosition(type="button", data-reset-all="true") 両方リセット
+
+
+      section.sec
+        h2.sec-title イベント破棄
+
+        .clear-fix.sec2
+          .sec2-cell
+            #wrapper5.wrapper5.wr
+              .container.co
+                for val in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+                  p Paragraph 5-#{val}
+
+
+
+          .sec2-cell
+            button.jsClick-RemoveEvent(type="button") イベント破棄
+
+
+
+
+
+
+
+
+    footer.footer
+      small.footer-copyright &copy; Nobuyuki Kondo
+
+
+
+
+    script(src="../jquery.verticalScroller.js")
+    script.
+      var wrap1 = new verticalScroller();
+
+      var wrap2 = new verticalScroller({
+        wrapper: '.wrapper2',
+        container: '.container',
+        duration: 0.6,
+        cssEasing: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
+        jsEasing: 'linear'
+      });
+
+      var wrap3 = new verticalScroller({
+        wrapper: '.wrapper3',
+        container: '.container',
+        duration: 0.6,
+        cssEasing: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
+        jsEasing: 'linear'
+      });
+
+      var wrap4 = new verticalScroller({
+        wrapper: '.wrapper4',
+        container: '.container',
+        duration: 0.6,
+        cssEasing: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
+        jsEasing: 'linear'
+      });
+
+      var wrap5 = new verticalScroller({
+        wrapper: '.wrapper5',
+        container: '.container',
+        duration: 0.6,
+        cssEasing: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
+        jsEasing: 'linear'
+      });
+
+
+
+
+
+
+
+      $('.jsClick-ChangeHeight').on('click', function(){
+        var _self = $(this),
+            id = _self.data('id'),
+            _h = _self.data('height');
+
+        $(id).css({height: _h});
+
+        switch (id){
+          case '#wrapper3':
+            wrap3.update();
+            break;
+        }
+      });
+
+
+      $('.jsClick-ChangeContext').on('click', function(){
+        var _self = $(this),
+            target = $(_self.data('id')),
+            context = _self.data('context'),
+            elem = target.find('.jsElem').eq(0).clone();
+
+        switch (context){
+          case 'add':
+            target.find('.container').append(elem);
+            break;
+          case 'remove':
+            target.find('.container').html(elem);
+            break;
+        }
+        wrap3.update();
+      });
+
+
+      $('.jsClick-ResetPosition').on('click', function(){
+        var _self = $(this),
+            isAllReset = _self.data('resetAll'),
+            target = null;
+
+        if (!isAllReset) target = _self.data('target');
+
+        wrap4.reset(target);
+      });
+
+
+      $('.jsClick-RemoveEvent').on('click', function(){
+        wrap5.destroy();
+      });
+
+
+
