@@ -65,13 +65,13 @@ var hoge = new verticalScroller();
 
 ### setup option
 
-| option | デフォルト | 備考 |
-| --- | --- | -- |
-| wrapper | '.wrapper' | |
-| container | '.container' | |
-| duration | 0.6 | アニメーション時間 |
-| cssEasing | 'cubic-bezier(0.165, 0.840, 0.440, 1.000)' | CSS3が利用できる場合のイージング。<br>デフォルトはQuartのease out |
-| jsEasing | 'linear' | CSS3が利用できない場合のjQuery.animateで使用するイージング |
+option | デフォルト | 備考
+--- | --- | ---
+wrapper | '.wrapper' | |
+container | '.container' | |
+duration | 0.6 | アニメーション時間
+cssEasing | 'cubic-bezier(0.165, 0.840, 0.440, 1.000)' | CSS3が利用できる場合のイージング。<br>デフォルトはQuartのease out
+jsEasing | 'linear' | CSS3が利用できない場合のjQuery.animateで使用するイージング
 
 
 ```javascript
