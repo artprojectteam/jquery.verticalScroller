@@ -1,7 +1,7 @@
 {
   "name": "jquery_vertical_scroller",
   "description": "overflow area animation plugin",
-  "main": "index.js",
+  "main": "jquery.verticalScroller.js",
   "authors": [
     "Nobuyuki Kondo"
   ],
