@@ -142,7 +142,6 @@ var verticalScroller = function () {
     var _t = this;
 
     $(document).on('touchstart' + _t.NAMESPACE, _t.OPTION.wrapper, function (e) {
-      e.preventDefault();
 
       var _self = $(this),
           touch = e.originalEvent.touches[0],
@@ -154,6 +153,7 @@ var verticalScroller = function () {
       this.start_time = e.timeStamp;
       this.move_y = void 0;
     }).on('touchmove' + _t.NAMESPACE, _t.OPTION.wrapper, function (e) {
+      e.preventDefault();
       if (this._data === void 0) return false;
       if (!this._data.scrollFlg && this._data.y >= 0) return false; // スクロールフラグがfalse かつyが0以上の時は一度だけ行う
 

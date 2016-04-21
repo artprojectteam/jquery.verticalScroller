@@ -2,6 +2,10 @@
   "name": "jquery_vertical_scroller",
   "description": "overflow area animation plugin",
   "main": "jquery.verticalScroller.js",
+  "scripts": [
+    "jquery.verticalScroller.js",
+    "jquery.verticalScroller.min.js"
+  ],
   "authors": [
     "Nobuyuki Kondo"
   ],
@@ -27,7 +31,7 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "jquery": "2.1.4",
-    "jquery-1.11.1": "1.11.3"
+    "jquery": "~2.1.4",
+    "jquery-1.11.1": "~1.11.3"
   }
 }
