@@ -31,7 +31,7 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
-    "jquery-1.11.1": "~1.11.3"
+    "jquery": ">=2.1.0",
+    "jquery-1.11.1": "~1.11.1"
   }
 }
