@@ -6,7 +6,7 @@
  Copyright (c) 2016 Nobuyuki Kondo All Rights Reserved.
  This software is released under the MIT License, see LICENSE
  */
-const FR = (function () {
+const FR = (function (ua) {
   var div = $('<div>Test</div>');
   $('body').append(div);
   div.css(
@@ -16,12 +16,15 @@ const FR = (function () {
     });
   var is3dSupport = (div.offset().left == 20);
   div.empty().remove();
+  
+  var is_msie = ua.indexOf('msie') > 0 || ua.indexOf('trident/7') > 0 || ua.indexOf('applewebkit') > 0 && ua.indexOf('edge');
 
   return {
     WHEEL: 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll',
-    isTranslate3d: is3dSupport
+    isTranslate3d: is3dSupport,
+    isIE: is_msie
   }
-})();
+})(window.navigator.userAgent.toLowerCase());
 
 if (!Date.now) {
   Date.now = function now() {
@@ -113,7 +116,7 @@ class verticalScroller {
 
       // スクロールフラグがfalseかつ要素位置が変更になっている場合は強制的に0にする
       if (!obj.scrollFlg && obj.y !== 0){
-        if (!!FR.isTranslate3d){
+        if (!!FR.isTranslate3d && !FR.isIE){
           this.goCSS(container, 0, this.OPTION.duration);
         }else{
           this.goAnimate(container, 0, this.OPTION.jsEasing, this.OPTION.duration);
@@ -226,7 +229,7 @@ class verticalScroller {
       // スクロールフラグがfalseだったら強制的に0
       if (!_data.scrollFlg) pos = 0;
 
-      if (!!FR.isTranslate3d) {
+      if (!!FR.isTranslate3d && !FR.isIE) {
         // transform3dが利用できる場合
         _t.goCSS(elem, pos, _t.OPTION.duration);
       } else {
@@ -289,7 +292,7 @@ class verticalScroller {
         if (obj.vsNum === target_num) {
           obj.y = 0;
 
-          if (FR.isTranslate3d === true) {
+          if (FR.isTranslate3d === true && !FR.isIE) {
             this.goCSS(container, 0, 0);
           } else {
             this.goAnimate(container, 0, 'liner', 0);
@@ -303,7 +306,7 @@ class verticalScroller {
 
     if (id === null) {
       // 全てをリセットする場合
-      if (FR.isTranslate3d === true) {
+      if (FR.isTranslate3d === true && !FR.isIE) {
         this.goCSS($(this.OPTION.container), 0, 0);
       } else {
         this.goAnimate($(this.OPTION.container), 0, 'liner', 0);

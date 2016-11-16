@@ -6,7 +6,7 @@ overflow領域で内部スクロールさせる際にデフォルトの`overflow
 @author: Nobuyuki Kondo<br>
 @license: MIT<br>
 @support: IE8+, Chrome, Firefox, Safari, Android 4+, iOS8+<br>
-@use: jQuery 1.11.x/2.x
+@use: jQuery 1.11.x/2.x/3.x
 
 
 [動作デモ](http://demo.artprojectteam.jp/jquery_vertical_scroller/)

@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2.0
+
+- IEでの動作をtransitionからanimateに変更
+
 ## 1.1.1 - 1.1.2
 
 - bower調整
