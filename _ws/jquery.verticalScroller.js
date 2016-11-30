@@ -17,12 +17,14 @@ const FR = (function (ua) {
   var is3dSupport = (div.offset().left == 20);
   div.empty().remove();
   
-  var is_msie = ua.indexOf('msie') > 0 || ua.indexOf('trident/7') > 0 || ua.indexOf('applewebkit') > 0 && ua.indexOf('edge');
+  var is_msie = (ua.indexOf('msie') > 0 || ua.indexOf('trident/7') > 0 || ua.indexOf('applewebkit') > 0 && ua.indexOf('edge') > 0) && ua.indexOf('chrome') === 0 && ua.indexOf('safari') === 0;
+  var isFirefox = ua.indexOf('firefox') > 0;
 
   return {
     WHEEL: 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll',
     isTranslate3d: is3dSupport,
-    isIE: is_msie
+    isIE: is_msie,
+    isFirefox: isFirefox
   }
 })(window.navigator.userAgent.toLowerCase());
 
@@ -40,7 +42,7 @@ class verticalScroller {
     var default_setting = {
       wrapper: '.wrapper',
       container: '.container',
-      duration: 0.6,
+      duration: 0.3,
       cssEasing: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
       jsEasing: 'linear'
     };
@@ -217,7 +219,8 @@ class verticalScroller {
       if (!_data.scrollFlg && _data.y >= 0) return false;    // スクロールフラグがfalseかつ要素位置が0の時は処理しない
       if (_data.timer !== false) clearTimeout(_data.timer);
 
-      var pos = _data.y + (delta / 4) >> 0,
+      var set_delta = FR.isFirefox ? delta * 2 : delta / 4;
+      var pos = _data.y + set_delta >> 0,
         diff = _data.wrapperH - _data.containerH;
 
       if (pos > 0) {
@@ -228,7 +231,6 @@ class verticalScroller {
 
       // スクロールフラグがfalseだったら強制的に0
       if (!_data.scrollFlg) pos = 0;
-
       if (!!FR.isTranslate3d && !FR.isIE) {
         // transform3dが利用できる場合
         _t.goCSS(elem, pos, _t.OPTION.duration);
@@ -259,7 +261,7 @@ class verticalScroller {
   }
 
   /**
-   * jQuery Animation (IE8/9)
+   * jQuery Animation (IE)
    * @param elem
    * @param pos
    * @param animation

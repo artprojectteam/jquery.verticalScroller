@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.2.1
+
+- デフォルト値を変更
+- Firefoxの場合のスクロール量計算を変更
+
 ## 1.2.0
 
 - IEでの動作をtransitionからanimateに変更

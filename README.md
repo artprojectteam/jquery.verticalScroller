@@ -69,7 +69,7 @@ var hoge = new verticalScroller();
 | ------- | ------ | ------ |
 | wrapper | '.wrapper' | |
 | container | '.container' | |
-| duration | 0.6 | アニメーション時間 |
+| duration | 0.3 | アニメーション時間 |
 | cssEasing | 'cubic-bezier(0.165, 0.840, 0.440, 1.000)' | CSS3が利用できる場合のイージング。<br>デフォルトはQuartのease out |
 | jsEasing | 'linear' | CSS3が利用できない場合のjQuery.animateで使用するイージング |
 
@@ -78,7 +78,7 @@ var hoge = new verticalScroller();
 var hoge = new verticalScroller({
   wrapper: '.wrapper',
   container: '.container',
-  duration: 0.6,
+  duration: 0.3,
   cssEasing: 'cubic-bezier(0.165, 0.840, 0.440, 1.000)',
   jsEasing: 'linear'
 });

@@ -1,6 +1,6 @@
 {
   "name": "jquery_vertical_scroller",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "description": "overflow area animation plugin",
   "main": "index.js",
   "scripts": {
