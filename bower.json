@@ -4,7 +4,9 @@
   "main": "jquery.verticalScroller.js",
   "scripts": [
     "jquery.verticalScroller.js",
-    "jquery.verticalScroller.min.js"
+    "jquery.verticalScroller.min.js",
+    "jquery.verticalScroller.noRequireJquery.es6.js",
+    "jquery.verticalScroller.requireJquery.es6.js"
   ],
   "authors": [
     "Nobuyuki Kondo"

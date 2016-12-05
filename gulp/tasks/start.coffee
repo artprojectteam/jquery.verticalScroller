@@ -25,6 +25,7 @@ g.task 'default', ()->
 g.task 'start', ()->
   $.watch config.file.js, ()->
     g.start babel.task.default
+    g.start babel.task.es6
 
   $.watch "#{config.ws}/#{config.demo}/js/**/", ()->
     g.start babel.task.demo
@@ -41,5 +42,5 @@ g.task 'start', ()->
 
 g.task 'build', ()->
   plugins.runSequence(
-    babel.task.default, babel.task.demo, jade.task.default, stylus.task.default
+    babel.task.default, babel.task.demo, jade.task.default, stylus.task.default, babel.task.es6
   )

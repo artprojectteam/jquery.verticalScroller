@@ -63,6 +63,19 @@ bower install  jquery_vertical_scroller --save
 var hoge = new verticalScroller();
 ```
 
+### babelで利用する場合
+
+```javascript
+// require('jquery')を使わない場合
+import verticalScroller from '/path/to/jquery.verticalScroller.noRequireJquery.es6.js';
+
+// require('jquery')を利用する場合
+import verticalScroller from '/path/to/jquery.verticalScroller.requireJquery.es6.js';
+```
+
+
+
+
 ### setup option
 
 | option | デフォルト | 備考 |

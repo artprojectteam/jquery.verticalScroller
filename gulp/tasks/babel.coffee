@@ -9,6 +9,7 @@ plugins = require '../plugins'
 task =
   default: 'babel'
   demo: 'babel:demo'
+  es6: 'es6'
 
 
 # Settings Export
@@ -50,3 +51,26 @@ g.task task.demo, ()->
     presets: ['es2015-without-strict']    # use strictモードなし(babel-preset-es2015-without-strict)
   )
   .pipe g.dest "#{config.demo}/js/"
+
+# ES6用
+g.task task.es6, ()->
+  return g.src(config.file.js)
+  .pipe $.plumber()
+  .pipe $.replace "class verticalScroller {", "export default class verticalScroller {"
+  .pipe $.rename(
+      basename: 'jquery.verticalScroller'
+      suffix: '.noRequireJquery'
+      extname: '.es6.js'
+  )
+  .pipe g.dest "#{config.dest}/"
+  .pipe $.wrapper(
+      header: "const $ = require(\'jquery\');\n"
+  )
+  .pipe $.rename(
+    basename: 'jquery.verticalScroller'
+    suffix: '.requireJquery'
+    extname: '.es6.js'
+  )
+  .pipe g.dest "#{config.dest}/"
+
+

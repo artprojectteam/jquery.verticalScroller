@@ -35,7 +35,7 @@ if (!Date.now) {
 }
 
 
-class verticalScroller {
+export default class verticalScroller {
   constructor(ops) {
     let default_setting = {
       wrapper: '.wrapper',
