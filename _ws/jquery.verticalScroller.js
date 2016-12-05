@@ -7,18 +7,18 @@
  This software is released under the MIT License, see LICENSE
  */
 const FR = (function (ua) {
-  var div = $('<div>Test</div>');
+  let div = $('<div>Test</div>');
   $('body').append(div);
   div.css(
     {
       'transform' : "translate3d(20px,0,0)",
       '-webkit-transform' : "translate3d(20px,0,0)"
     });
-  var is3dSupport = (div.offset().left == 20);
+  let is3dSupport = (div.offset().left == 20);
   div.empty().remove();
   
-  var is_msie = (ua.indexOf('msie') > 0 || ua.indexOf('trident/7') > 0 || ua.indexOf('applewebkit') > 0 && ua.indexOf('edge') > 0) && ua.indexOf('chrome') === 0 && ua.indexOf('safari') === 0;
-  var isFirefox = ua.indexOf('firefox') > 0;
+  let is_msie = (ua.indexOf('msie') > 0 || ua.indexOf('trident/7') > 0 || ua.indexOf('applewebkit') > 0 && ua.indexOf('edge') > 0) && ua.indexOf('chrome') === 0 && ua.indexOf('safari') === 0;
+  let isFirefox = ua.indexOf('firefox') > 0;
 
   return {
     WHEEL: 'onwheel' in document ? 'wheel' : 'onmousewheel' in document ? 'mousewheel' : 'DOMMouseScroll',
@@ -38,8 +38,7 @@ if (!Date.now) {
 
 class verticalScroller {
   constructor(ops) {
-    'use strict';
-    var default_setting = {
+    let default_setting = {
       wrapper: '.wrapper',
       container: '.container',
       duration: 0.3,
@@ -52,7 +51,7 @@ class verticalScroller {
     this.CONTENTS = this.init();
 
     // イベントのネームスペースを作成
-    var _name = this.OPTION.wrapper.replace(/\.|#/, '');
+    let _name = this.OPTION.wrapper.replace(/\.|#/, '');
     this.NAMESPACE = `.${_name}_swipe_${Date.now()}`;
 
     this.update();
@@ -66,14 +65,13 @@ class verticalScroller {
    * @returns {Array}
    */
   init() {
-    'use strict';
-    var target = $(this.OPTION.wrapper),
+    let target = $(this.OPTION.wrapper),
       res = [];
 
     target.removeAttr('data-vs-num').removeData('vsNum');
 
-    for (var i = 0, iLen = target.length; i < iLen; i++) {
-      var obj = target.eq(i),
+    for (let i = 0, iLen = target.length; i < iLen; i++) {
+      let obj = target.eq(i),
         temp = {
           wrapperH: 0,
           containerH: 0,
@@ -94,12 +92,11 @@ class verticalScroller {
    * 領域のアップデート
    */
   update() {
-    'use strict';
-    var w = document.documentElement.clientWidth || document.body.clientWidth,
+    let w = document.documentElement.clientWidth || document.body.clientWidth,
       WRP = $(this.OPTION.wrapper);
 
-    for (var i = 0, iLen = this.CONTENTS.length; i < iLen; i++) {
-      var obj = this.CONTENTS[i],
+    for (let i = 0, iLen = this.CONTENTS.length; i < iLen; i++) {
+      let obj = this.CONTENTS[i],
         wrapper = WRP.eq(i),
         container = wrapper.find(this.OPTION.container),
         _tempWrapperH = wrapper.innerHeight(),
@@ -134,13 +131,12 @@ class verticalScroller {
    * Swipe Event
    */
   onSwipe() {
-    'use strict';
-    var _t = this;
+    let _t = this;
 
     $(document)
       .on(`touchstart${_t.NAMESPACE}`, _t.OPTION.wrapper, function (e) {
 
-        var _self = $(this),
+        let _self = $(this),
           touch = e.originalEvent.touches[0],
           num = _self.data('vsNum');
 
@@ -155,16 +151,16 @@ class verticalScroller {
         if (this._data === void 0) return false;
         if (!this._data.scrollFlg && this._data.y >= 0) return false;   // スクロールフラグがfalse かつyが0以上の時は一度だけ行う
 
-        var touch = e.originalEvent.touches[0];
+        let touch = e.originalEvent.touches[0];
         this.move_y = touch.pageY - this.start_y - Math.abs(this._data.y) >> 0;
         this.end_time = e.timeStamp;
         _t.goCSS(this._elem, this.move_y, 0);
       })
       .on(`touchend${_t.NAMESPACE}`, _t.OPTION.wrapper, function () {
-        var pos = 0;
+        let pos = 0;
 
         if (this.move_y !== void 0) {
-          var diff_h = this._data.containerH - Math.abs(this.move_y),
+          let diff_h = this._data.containerH - Math.abs(this.move_y),
             diff_time = this.end_time - this.start_time,
             last_pos = this._data.wrapperH - this._data.containerH;
 
@@ -175,7 +171,7 @@ class verticalScroller {
             // 上に引っ張り過ぎたら最下部にフィット
             pos = last_pos;
           } else {
-            var vertical = this.move_y - this._data.y,
+            let vertical = this.move_y - this._data.y,
               reverb = Math.abs(vertical) / diff_time * 100 >> 0;
 
             if (vertical > 0) {
@@ -204,13 +200,12 @@ class verticalScroller {
    * Mouse Event
    */
   onWheel() {
-    'use strict';
-    var _t = this;
+    let _t = this;
 
     $(document).on(FR.WHEEL + _t.NAMESPACE, _t.OPTION.wrapper, function (e) {
       e.preventDefault();
 
-      var _self = $(this),
+      let _self = $(this),
         num = _self.data('vsNum'),
         elem = _self.find(_t.OPTION.container),
         _data = _t.CONTENTS[num],
@@ -219,8 +214,8 @@ class verticalScroller {
       if (!_data.scrollFlg && _data.y >= 0) return false;    // スクロールフラグがfalseかつ要素位置が0の時は処理しない
       if (_data.timer !== false) clearTimeout(_data.timer);
 
-      var set_delta = FR.isFirefox ? delta * 2 : delta / 4;
-      var pos = _data.y + set_delta >> 0,
+      let set_delta = FR.isFirefox ? delta * 2 : delta / 4;
+      let pos = _data.y + set_delta >> 0,
         diff = _data.wrapperH - _data.containerH;
 
       if (pos > 0) {
@@ -250,7 +245,7 @@ class verticalScroller {
    * @param duration
    */
   goCSS(elem, pos, duration) {
-    var ease = duration > 0 ? this.OPTION.cssEasing : 'linear';
+    let ease = duration > 0 ? this.OPTION.cssEasing : 'linear';
 
     elem.css({
       '-webkit-transform': `translate3d(0, ${pos}px, 0)`,
@@ -268,7 +263,7 @@ class verticalScroller {
    * @param duration
    */
   goAnimate(elem, pos, animation, duration) {
-    var speed = duration * 1000;
+    let speed = duration * 1000;
 
     elem.stop().animate({
       top: pos
@@ -282,13 +277,12 @@ class verticalScroller {
    * @param id[string] HTML ID
    */
   reset(id = null) {
-    'use strict';
-    for (var i = 0, iLen = this.CONTENTS.length; i < iLen; i++) {
-      var obj = this.CONTENTS[i];
+    for (let i = 0, iLen = this.CONTENTS.length; i < iLen; i++) {
+      let obj = this.CONTENTS[i];
 
       if (id !== null) {
         // 特定IDのみリセットする場合
-        var target = $(id),
+        let target = $(id),
           container = target.find(this.OPTION.container),
           target_num = target.data('vsNum');
         if (obj.vsNum === target_num) {

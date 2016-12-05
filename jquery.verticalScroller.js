@@ -37,8 +37,6 @@ if (!Date.now) {
 
 var verticalScroller = function () {
   function verticalScroller(ops) {
-    'use strict';
-
     _classCallCheck(this, verticalScroller);
 
     var default_setting = {
@@ -69,8 +67,6 @@ var verticalScroller = function () {
 
 
   verticalScroller.prototype.init = function init() {
-    'use strict';
-
     var target = $(this.OPTION.wrapper),
         res = [];
 
@@ -100,8 +96,6 @@ var verticalScroller = function () {
 
 
   verticalScroller.prototype.update = function update() {
-    'use strict';
-
     var w = document.documentElement.clientWidth || document.body.clientWidth,
         WRP = $(this.OPTION.wrapper);
 
@@ -142,8 +136,6 @@ var verticalScroller = function () {
 
 
   verticalScroller.prototype.onSwipe = function onSwipe() {
-    'use strict';
-
     var _t = this;
 
     $(document).on('touchstart' + _t.NAMESPACE, _t.OPTION.wrapper, function (e) {
@@ -210,8 +202,6 @@ var verticalScroller = function () {
 
 
   verticalScroller.prototype.onWheel = function onWheel() {
-    'use strict';
-
     var _t = this;
 
     $(document).on(FR.WHEEL + _t.NAMESPACE, _t.OPTION.wrapper, function (e) {
@@ -292,9 +282,8 @@ var verticalScroller = function () {
 
 
   verticalScroller.prototype.reset = function reset() {
-    'use strict';
-
     var id = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+
     for (var i = 0, iLen = this.CONTENTS.length; i < iLen; i++) {
       var obj = this.CONTENTS[i];
 
