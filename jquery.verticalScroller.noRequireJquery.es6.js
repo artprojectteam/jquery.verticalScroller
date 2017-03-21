@@ -146,14 +146,12 @@ export default class verticalScroller {
         this.move_y = void 0;
       })
       .on(`touchmove${_t.NAMESPACE}`, _t.OPTION.wrapper, function (e) {
-        e.preventDefault();
-        if (this._data === void 0) return false;
-        if (!this._data.scrollFlg && this._data.y >= 0) return false;   // スクロールフラグがfalse かつyが0以上の時は一度だけ行う
-
-        let touch = e.originalEvent.touches[0];
-        this.move_y = touch.pageY - this.start_y - Math.abs(this._data.y) >> 0;
-        this.end_time = e.timeStamp;
-        _t.goCSS(this._elem, this.move_y, 0);
+        if(this._data !== void 0 && (this._data.scrollFlg || this._data.y < 0)){
+          let touch = e.originalEvent.touches[0];
+          this.move_y = touch.pageY - this.start_y - Math.abs(this._data.y) >> 0;
+          this.end_time = e.timeStamp;
+          _t.goCSS(this._elem, this.move_y, 0);
+        }
       })
       .on(`touchend${_t.NAMESPACE}`, _t.OPTION.wrapper, function () {
         let pos = 0;
